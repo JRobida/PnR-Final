@@ -56,6 +56,9 @@ class GoPiggy(pigo.Pigo):
             self.encF(9)
             servo(120)
 
+    def status(self):
+        print("My power is at "+ str(volt()) + "volts")
+
     # AUTONOMOUS DRIVING
     def nav(self):
         print("Piggy nav")
