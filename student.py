@@ -49,12 +49,12 @@ class GoPiggy(pigo.Pigo):
         for x in range(100, 200, 25):
             print('Speed is set to: ' + str(x))
             set_speed(x)
-            servo(20)
+            servo(30)
             self.encB(9)
-            self.encR(2)
-            self.encL(2)
+            self.encR(7)
+            self.encL(7)
             self.encF(9)
-            servo(120)
+            servo(110)
 
     def status(self):
         print("My power is at "+ str(volt()) + "volts")
