@@ -45,19 +45,33 @@ class GoPiggy(pigo.Pigo):
     # A SIMPLE DANCE ALGORITHM
     def dance(self):
         print("Piggy dance")
-        ##### WRITE YOUR FIRST PROJECT HERE
-        for x in range(100, 200, 25):
-            print('Speed is set to: ' + str(x))
-            set_speed(x)
-            servo(30)
-            self.encB(9)
-            self.encR(7)
-            self.encL(7)
-            self.encF(9)
-            servo(110)
+        print('Is it safe to dance?')
+        if self.clearToDance():
+            for x in range(100, 200, 25):
+                print('Speed is set to: ' + str(x))
+                set_speed(x)
+                servo(30)
+                self.encB(9)
+                self.encR(7)
+                self.encL(7)
+                self.encF(9)
+                servo(110)
 
     def status(self):
         print("My power is at "+ str(volt()) + "volts")
+
+    def clearToDance(self):
+        #need to at encR and encL and encd b
+        servo(self.MIDPOINT)
+        time.sleep(.1)
+        print('Front distance:' + str(us_dist(15)))
+        servo(self.MIDPOINT - 60)
+        time.sleep(.1)
+        print('Right distance:' + str(us_dist(15)))
+        servo(self.MIDPOINT + 60)
+        time.sleep(.1)
+        print('Left distance:' + str(us_dist(15)))
+        return True
 
     # AUTONOMOUS DRIVING
     def nav(self):
