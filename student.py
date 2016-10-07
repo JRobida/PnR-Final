@@ -94,7 +94,6 @@ class GoPiggy(pigo.Pigo):
             self.encR(10)
             self.encB(5))
             extraTurn = True
-
         servo(self.MIDPOINT + 60)
         time.sleep(.1)
         if extraTurn:
