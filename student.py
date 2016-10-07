@@ -52,9 +52,13 @@ class GoPiggy(pigo.Pigo):
                 set_speed(x)
                 servo(30)
                 self.encB(9)
-                self.encR(7)
-                self.encL(7)
+                self.encR(180)
+                self.encL(180)
+                servo(82)
                 self.encF(9)
+                set_speed(200)
+                self.encB(14)
+                self.encR(10)
                 servo(110)
 
     def status(self):
@@ -64,13 +68,18 @@ class GoPiggy(pigo.Pigo):
         #need to at encR and encL and encd b
         servo(self.MIDPOINT)
         time.sleep(.1)
-        print('Front distance:' + str(us_dist(15)))
+        print('Front distance:' + str(us_dist(15))
+        self.encB(20)
         servo(self.MIDPOINT - 60)
         time.sleep(.1)
         print('Right distance:' + str(us_dist(15)))
+        self.encR(10)
+        self.encB(5))
         servo(self.MIDPOINT + 60)
         time.sleep(.1)
         print('Left distance:' + str(us_dist(15)))
+        self.encL(10)
+        self.encB(5)
         return True
 
     # AUTONOMOUS DRIVING
