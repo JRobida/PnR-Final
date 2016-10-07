@@ -32,6 +32,8 @@ class GoPiggy(pigo.Pigo):
         menu = {"1": ("Navigate forward", self.nav),
                 "2": ("Rotate", self.rotate),
                 "3": ("Dance", self.dance),
+                "s": ("Safe to Dance", self.clearToDance),
+                "v": ("Voltage", self.status),
                 "4": ("Calibrate servo", self.calibrate),
                 "q": ("Quit", quit)
                 }
@@ -58,28 +60,50 @@ class GoPiggy(pigo.Pigo):
                 self.encF(9)
                 set_speed(200)
                 self.encB(14)
+                self.encF(14)
+                self.encB(14)
+                self.encF(14)
                 self.encR(10)
                 servo(110)
-
+                servo(30)
+                servo(110)
+                servo(82)
+                self.encL(150)
+                self.encR(150)
+                self.encR(200)
+                servo(30)
+                servo(90)
+                servo(110)
+                servo(82)
     def status(self):
         print("My power is at "+ str(volt()) + "volts")
 
     def clearToDance(self):
         #need to at encR and encL and encd b
+        extraTurn = False
         servo(self.MIDPOINT)
         time.sleep(.1)
-        print('Front distance:' + str(us_dist(15))
-        self.encB(20)
+        dist = us_dist(15)
+        print('Front distance:' + str(dist)
+        if dist < self.STOP_DIST:
+            self.encB(20)
         servo(self.MIDPOINT - 60)
         time.sleep(.1)
-        print('Right distance:' + str(us_dist(15)))
-        self.encR(10)
-        self.encB(5))
+        dist = us_dist(15)
+        print('Right distance:' + str(dist)
+        if dist < self.STOP_DIST:
+            self.encR(10)
+            self.encB(5))
+            extraTurn = True
+
         servo(self.MIDPOINT + 60)
         time.sleep(.1)
+        if extraTurn:
+            self.encL(10)
         print('Left distance:' + str(us_dist(15)))
-        self.encL(10)
-        self.encB(5)
+        if dist < self.STOP_DIST:
+            self.encL(10)
+            self.encB(5)
         return True
 
     # AUTONOMOUS DRIVING
