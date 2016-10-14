@@ -65,7 +65,7 @@ class GoPiggy(pigo.Pigo):
     def status(self):
         print("My power is at "+ str(volt()) + "volts")
 
- #   def clearToDance(self):
+ #  def clearToDance(self):
         #need to at encR and encL and encd b
         extraTurn = False
         servo(self.MIDPOINT)
