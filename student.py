@@ -65,7 +65,8 @@ class GoPiggy(pigo.Pigo):
     def status(self):
         print("My power is at "+ str(volt()) + "volts")
 
- #  def clearToDance(self):
+    #Needs improvement before put in problem was STOP_DISt
+    def clearToDance(self):
         #need to at encR and encL and encd b
         extraTurn = False
         servo(self.MIDPOINT)
@@ -80,7 +81,7 @@ class GoPiggy(pigo.Pigo):
         print('Right distance:' + str(dist)
         if dist < self.STOP_DIST:
             self.encR(10)
-            self.encB(5))
+            self.encB(5)
             extraTurn = True
         servo(self.MIDPOINT + 60)
         time.sleep(.1)
@@ -96,8 +97,10 @@ class GoPiggy(pigo.Pigo):
     def nav(self):
         print("Piggy nav")
         ##### WRITE YOUR FINAL PROJECT HERE
-
-
+        #TODO: If while loop fails, check for another path
+        while self.isClear():
+            #let's go forward just a little
+            self.encF(18)
 ####################################################
 ############### STATIC FUNCTIONS
 
