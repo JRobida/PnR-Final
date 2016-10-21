@@ -101,8 +101,7 @@ class GoPiggy(pigo.Pigo):
         while self.isClear():
             #let's go forward just a little
             self.encF(18)
-        if self.isClear() is False
-            self.encB(18)
+
 
 ####################################################
 ############### STATIC FUNCTIONS
