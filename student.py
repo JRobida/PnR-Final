@@ -65,8 +65,8 @@ class GoPiggy(pigo.Pigo):
     def status(self):
         print("My power is at "+ str(volt()) + "volts")
 
-    #Needs improvement before put in problem was STOP_DISt
-    def clearToDance(self):
+    #Needs improvement before put in problem was STOP_DIST
+    '''def clearToDance(self):
         #need to at encR and encL and encd b
         extraTurn = False
         servo(self.MIDPOINT)
@@ -91,7 +91,7 @@ class GoPiggy(pigo.Pigo):
         if dist < self.STOP_DIST:
             self.encL(10)
             self.encB(5)
-        return True
+        return True'''
 
     # AUTONOMOUS DRIVING
     def nav(self):
