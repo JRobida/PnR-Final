@@ -101,6 +101,15 @@ class GoPiggy(pigo.Pigo):
         while self.isClear():
             #let's go forward just a little
             self.encF(18)
+        #Left or Right previous version worked
+            answer = self.choosePath()
+            if answer == "left"
+                self.encL(5)
+                #Make more accurate #
+            elif answer == "right":
+                self.encR(5)
+                #make more accurate #
+
 
 
 ####################################################
