@@ -100,15 +100,17 @@ class GoPiggy(pigo.Pigo):
         #TODO: If while loop fails, check for another path
         while self.isClear():
             #let's go forward just a little
-            self.encF(18)
+            self.encF(32)
         #Left or Right previous version worked
-            answer = self.choosePath()
-            if answer == "left"
-                self.encL(6)
-                #Make more accurate #
-            elif answer == "right":
-                self.encR(8)
-                #make more accurate #
+
+        answer = self.choosePath()
+        if answer == "left"
+            self.encL(6)
+            #Make more accurate #
+        elif answer == "right":
+            self.encR(8)
+            #make more accurate
+        self.nav()
 
 
 
