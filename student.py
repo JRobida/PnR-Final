@@ -104,7 +104,7 @@ class GoPiggy(pigo.Pigo):
         #Left or Right previous version worked
 
         answer = self.choosePath()
-        if answer == "left"
+        if answer == "left":
             self.encL(6)
             #Make more accurate #
         elif answer == "right":
