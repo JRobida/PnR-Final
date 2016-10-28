@@ -112,14 +112,14 @@ class GoPiggy(pigo.Pigo):
             #make more accurate
         self.nav()
 
-    def testDrive(self):
+    '''def testDrive(self):
         print('Here I go!!')
               fwd()
               while True:
                 if us_dist(15) < self.STOP_DIST
                     break
                 time.sleep(.05)
-            self.stop()
+            self.stop()'''
 
 
 
