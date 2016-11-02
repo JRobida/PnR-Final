@@ -110,7 +110,14 @@ class GoPiggy(pigo.Pigo):
         elif answer == "right":
             self.encL(6)
             #make more accurate
+
         self.nav()
+
+    # If robot goes foward three times stop and look for best path
+    def recheck(self):
+        if self.encF() == 3
+            self.stop()
+            self.isClear()
 
     '''def testDrive(self):
         print('Here I go!!')
