@@ -104,29 +104,29 @@ class GoPiggy(pigo.Pigo):
         #Left or Right previous version worked
 
         answer = self.choosePath()
+        #If there is an object to the left go right
         if answer == "left":
             self.encR(8)
-            #Make more accurate #
+            #Make more accurate, if there is an object right got left
         elif answer == "right":
             self.encL(6)
-            #make more accurate
+        #if there is an object that is less than 3 cm away back up and rescan
+        elif answer == "too close":
+            self.encB(18)
+            self.choosePath()
+
 
         self.nav()
 
-    # If robot goes foward three times stop and look for best path
+
+    # If robot goes forward three times stop and look for best path
     def recheck(self):
-        if self.encF() == 3
+        if self.encF() == 3:
             self.stop()
             self.isClear()
 
-    '''def testDrive(self):
-        print('Here I go!!')
-              fwd()
-              while True:
-                if us_dist(15) < self.STOP_DIST
-                    break
-                time.sleep(.05)
-            self.stop()'''
+
+
 
 
 
