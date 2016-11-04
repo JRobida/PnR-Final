@@ -14,6 +14,8 @@ class GoPiggy(pigo.Pigo):
     # You may want to add a variable to store your default speed
     MIDPOINT = 82
     STOP_DIST = 20
+    RIGHT_SPEED = 200
+    LEFT_SPEED = 200
 
     # CONSTRUCTOR
     def __init__(self):
@@ -24,6 +26,14 @@ class GoPiggy(pigo.Pigo):
         while True:
             self.stop()
             self.handler()
+
+#Adding set speed to stop vering
+    def setSpeed(self, left, right):
+        set_left_speed(left)
+        set_right_speed(right)
+        self.LEFT_SPEED = left
+        self.RIGHT_SPEED = right
+        print('Left speed set to: ' + str(left) + ' // Right set to: ' + str(right))
 
     ##### HANDLE IT
     def handler(self):
@@ -121,9 +131,13 @@ class GoPiggy(pigo.Pigo):
 
     # If robot goes forward three times stop and look for best path
     def recheck(self):
+       #start of loop
         if self.encF() == 3:
             self.stop()
             self.isClear()
+
+
+
 
 
 
