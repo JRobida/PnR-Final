@@ -116,10 +116,10 @@ class GoPiggy(pigo.Pigo):
         answer = self.choosePath()
         #If there is an object to the left go right
         if answer == "left":
-            self.encR(8)
+            self.encL(8)
             #Make more accurate, if there is an object right got left
         elif answer == "right":
-            self.encL(6)
+            self.encR(6)
         #if there is an object that is less than 3 cm away back up and rescan
         elif answer == "too close":
             self.encB(18)
