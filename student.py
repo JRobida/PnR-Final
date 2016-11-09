@@ -16,6 +16,7 @@ class GoPiggy(pigo.Pigo):
     STOP_DIST = 20
     RIGHT_SPEED = 200
     LEFT_SPEED = 200
+    fwd_count = 0
 
     # CONSTRUCTOR
     def __init__(self):
@@ -108,11 +109,21 @@ class GoPiggy(pigo.Pigo):
         print("Piggy nav")
         ##### WRITE YOUR FINAL PROJECT HERE
         #TODO: If while loop fails, check for another path
+
+
+
         while self.isClear():
             #let's go forward just a little
+            self.recheck()
             self.encF(18)
-        #Left or Right previous version worked
+        #Turn head to center
+        servo(self.MIDPOINT)
+        time.sleep(.1)
+        # if there is an object that is less than 3 cm away back up and rescan
+        if us_dist(15) < 3:
+            self.encB(9)
 
+        #Left or Right previous version worked
         answer = self.choosePath()
         #If there is an object to the left go right
         if answer == "left":
@@ -120,10 +131,8 @@ class GoPiggy(pigo.Pigo):
             #Make more accurate, if there is an object right got left
         elif answer == "right":
             self.encR(6)
-        #if there is an object that is less than 3 cm away back up and rescan
-        elif answer == "too close":
-            self.encB(18)
-            self.choosePath()
+
+
 
 
         self.nav()
@@ -131,10 +140,18 @@ class GoPiggy(pigo.Pigo):
 
     # If robot goes forward three times stop and look for best path
     def recheck(self):
+        self.fwd_count += 1
        #start of loop
-        if self.encF() == 3:
+        if self.fwd_count == 3:
             self.stop()
-            self.isClear()
+            #Left or Right previous version worked
+            answer = self.choosePath()
+            #If there is an object to the left go right
+            if answer == "left":
+                self.encL(8)
+                #Make more accurate, if there is an object right got left
+            elif answer == "right":
+                self.encR(6)
 
 
 
