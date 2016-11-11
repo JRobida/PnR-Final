@@ -151,6 +151,13 @@ class GoPiggy(pigo.Pigo):
             elif answer == "right":
                 self.encR(6)
 
+#if a distance has a large distance turn 90 if small turn 45
+    #defining new method
+    def self.turnspeed(self):
+        if us_dist(15) > 20:
+            self.rotate(90)
+        elif us_dist(15) < 10
+            self.rotate(45)
 
 
 
