@@ -45,7 +45,8 @@ class GoPiggy(pigo.Pigo):
                 "3": ("Dance", self.dance),
                 "v": ("Voltage", self.status),
                 "4": ("Calibrate servo", self.calibrate),
-                "q": ("Quit", quit)
+                "q": ("Quit", quit),
+                "s": ("Speed", self.setSpeed()
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
@@ -109,9 +110,6 @@ class GoPiggy(pigo.Pigo):
         print("Piggy nav")
         ##### WRITE YOUR FINAL PROJECT HERE
         #TODO: If while loop fails, check for another path
-
-
-
         while self.isClear():
             #let's go forward just a little
             self.recheck()
