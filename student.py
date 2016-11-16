@@ -46,7 +46,7 @@ class GoPiggy(pigo.Pigo):
                 "v": ("Voltage", self.status),
                 "4": ("Calibrate servo", self.calibrate),
                 "q": ("Quit", quit),
-                "s": ("Speed", self.setSpeed()
+                "s": ("Speed", self.setSpeed)
                 }
         # loop and print the menu...
         for key in sorted(menu.keys()):
