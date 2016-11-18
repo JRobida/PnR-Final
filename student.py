@@ -144,7 +144,7 @@ class GoPiggy(pigo.Pigo):
     # AUTONOMOUS DRIVING
     def nav(self):
         print("Piggy nav")
-        ##### WRITE YOUR FINAL PROJECT HERE
+        #### WRITE YOUR FINAL PROJECT HERE
         #TODO: If while loop fails, check for another path
         while self.isClear():
             #let's go forward just a little
