@@ -17,6 +17,11 @@ class GoPiggy(pigo.Pigo):
     RIGHT_SPEED = 200
     LEFT_SPEED = 200
     fwd_count = 0
+    #Adding a more accurate turn
+    turn_track = 0.0
+    #uppercase will not change they are final
+    TIME_PER_DEGREE = 0.01278
+    TURN_MODIFIER = .5
 
     # CONSTRUCTOR
     def __init__(self):
@@ -105,6 +110,37 @@ class GoPiggy(pigo.Pigo):
             self.encB(5)
         return True'''
 
+    ##my new turn method becasue encR and encL just dont cut it
+    #takes x amount of degrees and turns accordingly
+    def turnR(self, deg):
+        # adjust the tracker so we know how many degrees we turn
+        self.turn_track += deg
+        print("The exit is " + str(self.turn_track) + " degrees away.")
+        self.setSpeed(self.LEFT_SPEED * self.TURN_MODIFIER,
+                      self.RIGHT_SPEED * self.TURN_MODIFIER)
+        #Do turn stuff
+        right_rot()
+        time.sleep(deg * self.TIME_PER_DEGREE)
+        self.stop
+
+    def turnL(self, deg):
+        #adjust the tracker so we know how many degrees we turn
+        self.turn_track -= deg
+        print("The exit is " + str(self.turn_track) + " degrees away.")
+        self.setSpeed(self.LEFT_SPEED * self.TURN_MODIFIER,
+                      self.RIGHT_SPEED * self.TURN_MODIFIER)
+        #Do turn stuff
+        left_rot()
+        time.sleep(deg * self.TIME_PER_DEGREE)
+        self.stop()self.setSpeed(self.LEFT_SPEED, self.RIGHT_SPEED)
+
+
+    def setSpeed(self, left, right):
+
+        set_left_speed(left)
+        set_right_speed(right)
+        time.sleep(.05)
+
     # AUTONOMOUS DRIVING
     def nav(self):
         print("Piggy nav")
@@ -125,10 +161,10 @@ class GoPiggy(pigo.Pigo):
         answer = self.choosePath()
         #If there is an object to the left go right
         if answer == "left":
-            self.encL(8)
+            self.turnL(45)
             #Make more accurate, if there is an object right got left
         elif answer == "right":
-            self.encR(6)
+            self.turnR(45)
 
 
 
@@ -146,13 +182,12 @@ class GoPiggy(pigo.Pigo):
             answer = self.choosePath()
             #If there is an object to the left go right
             if answer == "left":
-                self.encL(8)
+                self.turnL(45)
                 #Make more accurate, if there is an object right got left
             elif answer == "right":
-                self.encR(6)
+                self.turnR(45)
 
-    #if a distance has a large distance turn 90 if small turn 45
-    #defining new method
+
 
 
 
