@@ -132,7 +132,7 @@ class GoPiggy(pigo.Pigo):
         #Do turn stuff
         left_rot()
         time.sleep(deg * self.TIME_PER_DEGREE)
-        self.stop()self.setSpeed(self.LEFT_SPEED, self.RIGHT_SPEED)
+        self.stop(self.setSpeed(self.LEFT_SPEED, self.RIGHT_SPEED)
 
 
     def setSpeed(self, left, right):
