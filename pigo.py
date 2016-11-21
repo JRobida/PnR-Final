@@ -250,7 +250,7 @@ class Pigo(object):
                 else:
                     print("Midpoint now saved to: " + str(self.MIDPOINT))
                     break
-        response = input("Do you want to check if I'm driving straight? (y/n)")
+        response = input("Do you want to check if I'm driving straight? (y/n)" )
         if response == 'y':
 
             while True:

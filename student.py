@@ -16,6 +16,7 @@ class GoPiggy(pigo.Pigo):
     STOP_DIST = 20
     RIGHT_SPEED = 200
     LEFT_SPEED = 200
+    #For the recheck method
     fwd_count = 0
     #Adding a more accurate turn
     turn_track = 0.0
@@ -33,13 +34,6 @@ class GoPiggy(pigo.Pigo):
             self.stop()
             self.handler()
 
-#Adding set speed to stop vering
-    def setSpeed(self, left, right):
-        set_left_speed(left)
-        set_right_speed(right)
-        self.LEFT_SPEED = left
-        self.RIGHT_SPEED = right
-        print('Left speed set to: ' + str(left) + ' // Right set to: ' + str(right))
 
     ##### HANDLE IT
     def handler(self):
@@ -81,6 +75,10 @@ class GoPiggy(pigo.Pigo):
             servo(82)
     def status(self):
         print("My power is at "+ str(volt()) + "volts")
+
+    #Defining the speed of the left and right motors
+    def status(self):
+        print("My left speed is at" + str())
 
     #Needs improvement before put in problem was STOP_DIST
     '''def clearToDance(self):
@@ -171,12 +169,11 @@ class GoPiggy(pigo.Pigo):
         elif answer == "right":
             self.turnR(45)
 
-
-
-
         self.nav()
 
-    #TODO: add a setspeed method to stop robot from drifting left
+    #TODO: add a setspeed method to stop robot from drifting right
+
+
     # If robot goes forward three times stop and look for best path
     def recheck(self):
         self.fwd_count += 1
@@ -191,8 +188,45 @@ class GoPiggy(pigo.Pigo):
                 #Make more accurate, if there is an object right got left
             elif answer == "right":
                 self.turnR(45)
+    #Set speed
+    def calibrate(self):
+        print("Calibrating...")
+        servo(self.MIDPOINT)
+        response = input("Am I looking straight ahead? (y/n): ")
+        if response == 'n':
+            while True:
+                response = input("Turn right, left, or am I done? (r/l/d): ")
+                if response == "r":
+                    self.MIDPOINT += 1
+                    print("Midpoint: " + str(self.MIDPOINT))
+                    servo(self.MIDPOINT)
+                    time.sleep(.01)
+                elif response == "l":
+                    self.MIDPOINT -= 1
+                    print("Midpoint: " + str(self.MIDPOINT))
+                    servo(self.MIDPOINT)
+                    time.sleep(.01)
+                else:
+                    print("Midpoint now saved to: " + str(self.MIDPOINT))
+                    break
+        response = input("Do you want to check if I'm driving straight? (y/n)")
+        if response == 'y':
 
-
+            while True:
+                set_left_speed(self.LEFT_SPEED)
+                set_right_speed(self.RIGHT_SPEED)
+                print("Left: " + str(self.LEFT_SPEED) + "//  Right: " + str(self.RIGHT_SPEED))
+                #Robot will go foward more to better determine speed
+                self.encF(19)
+                response = input("Reduce left, reduce right or done? (l/r/d): ")
+                if response == 'l':
+                    self.LEFT_SPEED -= 10
+                elif response == 'r':
+                    self.RIGHT_SPEED -= 10
+                elif response == 'm':
+                    self.encF(19)
+                else:
+                    break
 
 
 
