@@ -148,6 +148,7 @@ class GoPiggy(pigo.Pigo):
         print("Piggy nav")
         #### WRITE YOUR FINAL PROJECT HERE
         #TODO: If while loop fails, check for another path
+        #TODO: Replace choosePath with  a method that's smarter
         while self.isClear():
             #let's go forward just a little
             self.recheck()
@@ -162,9 +163,11 @@ class GoPiggy(pigo.Pigo):
         #Left or Right previous version worked
         answer = self.choosePath()
         #If there is an object to the left go right
+        #TODO: Replace '45'  with  a variable to make a better turn
         if answer == "left":
             self.turnL(45)
             #Make more accurate, if there is an object right got left
+            # TODO: Replace '45'  with  a variable to make a better turn
         elif answer == "right":
             self.turnR(45)
 
@@ -173,7 +176,7 @@ class GoPiggy(pigo.Pigo):
 
         self.nav()
 
-
+    #TODO: add a setspeed method to stop robot from drifting left
     # If robot goes forward three times stop and look for best path
     def recheck(self):
         self.fwd_count += 1

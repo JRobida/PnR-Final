@@ -70,7 +70,6 @@ class Pigo(object):
         self.encL(2)
         self.encR(2)
         self.encF(5)
-
     def nav(self):
         print("Parent nav")
         while True:
