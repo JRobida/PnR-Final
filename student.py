@@ -15,7 +15,7 @@ class GoPiggy(pigo.Pigo):
     MIDPOINT = 82
     STOP_DIST = 20
     RIGHT_SPEED = 200
-    LEFT_SPEED = 200
+    LEFT_SPEED = 175
     #For the recheck method
     fwd_count = 0
     #Adding a more accurate turn
@@ -76,9 +76,6 @@ class GoPiggy(pigo.Pigo):
     def status(self):
         print("My power is at "+ str(volt()) + "volts")
 
-    #Defining the speed of the left and right motors
-    def status(self):
-        print("My left speed is at" + str())
 
     #Needs improvement before put in problem was STOP_DIST
     '''def clearToDance(self):
@@ -220,8 +217,10 @@ class GoPiggy(pigo.Pigo):
                 self.encF(19)
                 response = input("Reduce left, reduce right or done? (l/r/d): ")
                 if response == 'l':
+                    #Reduces every 5 instead of ten
                     self.LEFT_SPEED -= 5
                 elif response == 'r':
+                    #Redueces every 5 instead of ten
                     self.RIGHT_SPEED -= 5
                 elif response == 'm':
                     self.encF(19)
