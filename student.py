@@ -171,7 +171,7 @@ class GoPiggy(pigo.Pigo):
 
         self.nav()
 
-    #TODO: add a setspeed method to stop robot from drifting right
+
 
 
     # If robot goes forward three times stop and look for best path
@@ -188,7 +188,7 @@ class GoPiggy(pigo.Pigo):
                 #Make more accurate, if there is an object right got left
             elif answer == "right":
                 self.turnR(45)
-    #Set speed
+    #New calibrate method to stop robot from drifting from the right
     def calibrate(self):
         print("Calibrating...")
         servo(self.MIDPOINT)
@@ -220,9 +220,9 @@ class GoPiggy(pigo.Pigo):
                 self.encF(19)
                 response = input("Reduce left, reduce right or done? (l/r/d): ")
                 if response == 'l':
-                    self.LEFT_SPEED -= 10
+                    self.LEFT_SPEED -= 5
                 elif response == 'r':
-                    self.RIGHT_SPEED -= 10
+                    self.RIGHT_SPEED -= 5
                 elif response == 'm':
                     self.encF(19)
                 else:
