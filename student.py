@@ -15,7 +15,7 @@ class GoPiggy(pigo.Pigo):
     MIDPOINT = 82
     STOP_DIST = 20
     RIGHT_SPEED = 200
-    LEFT_SPEED = 175
+    LEFT_SPEED = 180
     #For the recheck method
     fwd_count = 0
     #Adding a more accurate turn
