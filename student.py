@@ -55,24 +55,7 @@ class GoPiggy(pigo.Pigo):
         menu.get(ans, [None, error])[1]()
 
     # A SIMPLE DANCE ALGORITHM
-    def dance(self):
-        print("Piggy dance")
-        print('Is it safe to dance?')
-        for x in range(100, 200, 25):
-            if not self.clearToDance():
-                print ("you can not dance")
-                break
-            print('Speed is set to: ' + str(x))
-            set_speed(x)
-            servo(30)
-            self.encB(9)
-            self.encR(180)
-            servo(80)
-            self.encL(180)
-            self.encF(5)
-            self.encB(5)
-            servo(100)
-            servo(82)
+
     def status(self):
         print("My power is at "+ str(volt()) + "volts")
 
@@ -131,12 +114,7 @@ class GoPiggy(pigo.Pigo):
         self.setSpeed(self.LEFT_SPEED, self.RIGHT_SPEED)
 
 
-    def setSpeed(self, left, right):
-        print("Left speed: " + str(left))
-        print("Right speed: " + str(right))
-        set_left_speed(int(left))
-        set_right_speed(int(right))
-        time.sleep(.05)
+
 
     # AUTONOMOUS DRIVING
     def nav(self):
@@ -157,17 +135,68 @@ class GoPiggy(pigo.Pigo):
 
         #Left or Right previous version worked
         answer = self.choosePath()
-        #If there is an object to the left go right
+        turn_target = self.kenny()
+        if turn_target < 0:
+            self.turnR(abs(turn_target))
+        else:
+            self.turnL((turn_target))
+
+        ''''#If there is an object to the left go right
         #TODO: Replace '45'  with  a variable to make a better turn
         if answer == "left":
             self.turnL(45)
+            #self.turnL(turn_target)
             #Make more accurate, if there is an object right got left
             # TODO: Replace '45'  with  a variable to make a better turn
         elif answer == "right":
             self.turnR(45)
+            #self.turnR(turn_target)'''
 
         self.nav()
 
+    #Replacement turn method find the best option
+    def kenny(self):
+        #use the built-in wideScan
+        self.wideScan()
+        #count will keep track of contigeous positive readings
+        count = 0
+        #list of open paths we detect
+        option = [0]
+        #What increment do you have widescan set to
+        INC = 2
+        ######################
+        ##Build the options
+        ######################
+        for x in range(self.MIDPOINT - 60, self.MIDPOINT + 60):
+            if x:
+                if self.scan[x]:
+                    #30 can be taken out or changed this is a saftey buffer
+                    if self.scan[x] > (self.STOP_DIST + 30):
+                        count += 1
+                    #if reading isn't safe
+                    else:
+                        #I have to reset count. This path won't work
+                        count = 0
+                    if count == (20/INC):
+                        #SUCCESS I've found enough positive readings in a row
+                        print ('Found an option from ' + str(x -20) + " to " + str(x))
+                        count = 0
+                        option.append(x - 10)
+        ######################################
+        ##########Pick from the options
+        ######################################
+        bestoption = 90
+        winner = 0
+        for x in option:
+            #skip our filler option
+            if not x.__index__() == 0:
+                print("Choice # " + str(x.__index__()) + " is@" + str(x) + " degrees")
+                ideal = self.turn_track + self.MIDPOINT
+                print("My ideal choice would be " + str(self.turnL() + self.MIDPOINT))
+            if bestoption > abs(ideal -x):
+                bestoption = abs(ideal -x)
+                winner = x - self.MIDPOINT
+        return winner
 
 
 
@@ -186,6 +215,34 @@ class GoPiggy(pigo.Pigo):
             elif answer == "right":
                 self.turnR(45)
     #New calibrate method to stop robot from drifting from the right
+
+
+    def setSpeed(self, left, right):
+        print("Left speed: " + str(left))
+        print("Right speed: " + str(right))
+        set_left_speed(int(left))
+        set_right_speed(int(right))
+        time.sleep(.05)
+
+    #TODO fix dance method
+    def dance(self):
+        print("Piggy dance")
+        #Setting Speed
+        print('Speed is set to: ' + str(x))
+        set_speed(x)
+        #Starting dance method
+        servo(30)
+        self.encB(9)
+        self.encR(180)
+        servo(80)
+        self.encL(180)
+        self.encF(5)
+        self.encB(5)
+        servo(100)
+        servo(82)
+
+
+
     def calibrate(self):
         print("Calibrating...")
         servo(self.MIDPOINT)
@@ -213,20 +270,19 @@ class GoPiggy(pigo.Pigo):
                 set_left_speed(self.LEFT_SPEED)
                 set_right_speed(self.RIGHT_SPEED)
                 print("Left: " + str(self.LEFT_SPEED) + "//  Right: " + str(self.RIGHT_SPEED))
-                #Robot will go foward more to better determine speed
+                # Robot will go foward more to better determine speed
                 self.encF(19)
                 response = input("Reduce left, reduce right or done? (l/r/d): ")
                 if response == 'l':
-                    #Reduces every 5 instead of ten
+                    # Reduces every 5 instead of ten
                     self.LEFT_SPEED -= 5
                 elif response == 'r':
-                    #Redueces every 5 instead of ten
+                    # Redueces every 5 instead of ten
                     self.RIGHT_SPEED -= 5
                 elif response == 'm':
                     self.encF(19)
                 else:
                     break
-
 
 
 
