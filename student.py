@@ -135,12 +135,12 @@ class GoPiggy(pigo.Pigo):
             self.encB(9)
 
         #Left or Right previous version worked
-        answer = self.choosePath()
+        #answer = self.choosePath()
         turn_target = self.kenny()
         if turn_target < 0:
-            self.turnR(abs(turn_target))
+            self.turnR(turn_target)
         else:
-            self.turnL((turn_target))
+            self.turnL(abs(turn_target))
 
         #Back up code incase def kenny does not work
         ''''#If there is an object to the left go right
@@ -218,7 +218,7 @@ class GoPiggy(pigo.Pigo):
         set_right_speed(int(right))
         time.sleep(.05)
 
-    #TODO fix dance method
+
     def dance(self):
         print("Piggy dance")
         #Starting dance method
@@ -230,6 +230,7 @@ class GoPiggy(pigo.Pigo):
         self.encF(5)
         self.encB(5)
         servo(100)
+        time.sleep(.01)
         servo(82)
 
 
