@@ -15,6 +15,7 @@ class GoPiggy(pigo.Pigo):
     MIDPOINT = 82
     STOP_DIST = 20
     RIGHT_SPEED = 200
+    #reduced left motor b/c too strong
     LEFT_SPEED = 180
     #For the recheck method
     fwd_count = 0
@@ -141,6 +142,7 @@ class GoPiggy(pigo.Pigo):
         else:
             self.turnL((turn_target))
 
+        #Back up code incase def kenny does not work
         ''''#If there is an object to the left go right
         #TODO: Replace '45'  with  a variable to make a better turn
         if answer == "left":
@@ -154,49 +156,39 @@ class GoPiggy(pigo.Pigo):
 
         self.nav()
 
-    #Replacement turn method find the best option
     def kenny(self):
-        #use the built-in wideScan
+        # Activate our scanner!
         self.wideScan()
-        #count will keep track of contigeous positive readings
+        # count will keep track of contigeous positive readings
         count = 0
-        #list of open paths we detect
+        # list of all the open paths we detect
         option = [0]
-        #What increment do you have widescan set to
+        # YOU DECIDE: What do we add to STOP_DIST when looking for a path fwd?
+        SAFETY_BUFFER = 30
+        # YOU DECIDE: what increment do you have your wideScan set to?
         INC = 2
-        ######################
-        ##Build the options
-        ######################
+
+        ###########################
+        ######### BUILD THE OPTIONS
+        # loop from the 60 deg right of our middle to 60 deg left of our middle
         for x in range(self.MIDPOINT - 60, self.MIDPOINT + 60):
-            if x:
-                if self.scan[x]:
-                    #30 can be taken out or changed this is a saftey buffer
-                    if self.scan[x] > (self.STOP_DIST + 30):
-                        count += 1
-                    #if reading isn't safe
-                    else:
-                        #I have to reset count. This path won't work
-                        count = 0
-                    if count == (20/INC):
-                        #SUCCESS I've found enough positive readings in a row
-                        print ('Found an option from ' + str(x -20) + " to " + str(x))
-                        count = 0
-                        option.append(x - 10)
-        ######################################
-        ##########Pick from the options
-        ######################################
-        bestoption = 90
-        winner = 0
-        for x in option:
-            #skip our filler option
-            if not x.__index__() == 0:
-                print("Choice # " + str(x.__index__()) + " is@" + str(x) + " degrees")
-                ideal = self.turn_track + self.MIDPOINT
-                print("My ideal choice would be " + str(self.turnL() + self.MIDPOINT))
-            if bestoption > abs(ideal -x):
-                bestoption = abs(ideal -x)
-                winner = x - self.MIDPOINT
-        return winner
+            # ignore all blank spots in the list
+            if self.scan[x]:
+                # add 30 if you want, this is an extra safety buffer
+                if self.scan[x] > (self.STOP_DIST + SAFETY_BUFFER):
+                    count += 1
+                # if this reading isn't safe...
+                else:
+                    # aww nuts, I have to reset the count, this path won't work
+                    count = 0
+                # YOU DECIDE: Is 16 degrees the right size to consider as a safe window?
+                if count > (16 / INC) - 1:
+                    # SUCCESS! I've found enough positive readings in a row
+                    print("---FOUND OPTION: from " + str(x - 16) + " to " + str(x))
+                    # set the counter up again for next time
+                    count = 0
+                    # add this option to the list
+                    option.append(x - 8)
 
 
 
@@ -246,11 +238,14 @@ class GoPiggy(pigo.Pigo):
     def calibrate(self):
         print("Calibrating...")
         servo(self.MIDPOINT)
+        #for the head of the robot
         response = input("Am I looking straight ahead? (y/n): ")
         if response == 'n':
             while True:
+                #turns the robots head
                 response = input("Turn right, left, or am I done? (r/l/d): ")
                 if response == "r":
+                    #turns head right 1 degree
                     self.MIDPOINT += 1
                     print("Midpoint: " + str(self.MIDPOINT))
                     servo(self.MIDPOINT)
@@ -267,6 +262,7 @@ class GoPiggy(pigo.Pigo):
         if response == 'y':
 
             while True:
+                #calibrating speed method
                 set_left_speed(self.LEFT_SPEED)
                 set_right_speed(self.RIGHT_SPEED)
                 print("Left: " + str(self.LEFT_SPEED) + "//  Right: " + str(self.RIGHT_SPEED))
