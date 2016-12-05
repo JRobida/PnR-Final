@@ -114,51 +114,38 @@ class GoPiggy(pigo.Pigo):
         self.stop()
         self.setSpeed(self.LEFT_SPEED, self.RIGHT_SPEED)
 
-
-
-
-    # AUTONOMOUS DRIVING
     def nav(self):
         print("Piggy nav")
         #### WRITE YOUR FINAL PROJECT HERE
-        #TODO: If while loop fails, check for another path
-        #TODO: Replace choosePath with  a method that's smarter
+        # TODO: If while loop fails, check for another path
+        # TODO: Replace choosePath with  a method that's smarter
         while self.isClear():
-            #let's go forward just a little
+            # let's go forward just a little
             self.recheck()
             self.encF(18)
-        #Turn head to center
+        # Turn head to center
         servo(self.MIDPOINT)
         time.sleep(.1)
         # if there is an object that is less than 3 cm away back up and rescan
         if us_dist(15) < 3:
             self.encB(9)
 
-        #Left or Right previous version worked
-        #answer = self.choosePath()
-        turn_target = self.kenny()
-        if turn_target < 0:
-            self.turnR(turn_target)
-        else:
-            self.turnL(abs(turn_target))
-
-        #Back up code incase def kenny does not work
-        ''''#If there is an object to the left go right
-        #TODO: Replace '45'  with  a variable to make a better turn
+        # Left or Right previous version worked
+        answer = self.choosePath()
+        # If there is an object to the left go right
+        # TODO: Replace '45'  with  a variable to make a better turn
         if answer == "left":
-            #Turn left 45  degrees
             self.turnL(45)
-            #self.turnL(turn_target)
-            #Make more accurate, if there is an object right got left
+            # Make more accurate, if there is an object right got left
             # TODO: Replace '45'  with  a variable to make a better turn
         elif answer == "right":
-            #Turn right 45 degrees
             self.turnR(45)
-            #self.turnR(turn_target)'''
 
         self.nav()
 
-    def kenny(self):
+
+
+    '''def kenny(self):
         # Activate our scanner!
         self.wideScan()
         # count will keep track of contigeous positive readings
@@ -216,7 +203,7 @@ class GoPiggy(pigo.Pigo):
             input("\nABOUT TO TURN RIGHT BY: " + str(bestoption) + " degrees")
         else:
             input("\nABOUT TO TURN LEFT BY: " + str(abs(bestoption)) + " degrees")
-        return bestoption
+        return bestoption'''
 
 
 
