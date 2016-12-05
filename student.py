@@ -168,7 +168,7 @@ class GoPiggy(pigo.Pigo):
         # YOU DECIDE: what increment do you have your wideScan set to?
         INC = 2
 
-        ###########################
+        ##########################
         ######### BUILD THE OPTIONS
         # loop from the 60 deg right of our middle to 60 deg left of our middle
         for x in range(self.MIDPOINT - 60, self.MIDPOINT + 60):
