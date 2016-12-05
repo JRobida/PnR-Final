@@ -146,11 +146,13 @@ class GoPiggy(pigo.Pigo):
         ''''#If there is an object to the left go right
         #TODO: Replace '45'  with  a variable to make a better turn
         if answer == "left":
+            #Turn left 45  degrees
             self.turnL(45)
             #self.turnL(turn_target)
             #Make more accurate, if there is an object right got left
             # TODO: Replace '45'  with  a variable to make a better turn
         elif answer == "right":
+            #Turn right 45 degrees
             self.turnR(45)
             #self.turnR(turn_target)'''
 
@@ -219,9 +221,6 @@ class GoPiggy(pigo.Pigo):
     #TODO fix dance method
     def dance(self):
         print("Piggy dance")
-        #Setting Speed
-        print('Speed is set to: ' + str(x))
-        set_speed(x)
         #Starting dance method
         servo(30)
         self.encB(9)
