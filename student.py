@@ -160,8 +160,8 @@ class GoPiggy(pigo.Pigo):
                     # add this option to the list
                     option.append(x - 8)
 
-                    ####################################
-                    ############## PICK FROM THE OPTIONS - experimental
+        ####################################
+        ############## PICK FROM THE OPTIONS - experimental
 
         # The biggest angle away from our midpoint we could possibly see is 90
         bestoption = 90
@@ -275,8 +275,8 @@ class GoPiggy(pigo.Pigo):
                     break
 
 
-                    # Needs improvement before put in problem was STOP_DIST
-    def clearToDance(self):
+    # Needs improvement before put in problem was STOP_DIST
+    '''def clearToDance(self):
         #need to at encR and encL and encd b
         extraTurn = False
         servo(self.MIDPOINT)
@@ -301,7 +301,7 @@ class GoPiggy(pigo.Pigo):
         if dist < self.STOP_DIST:
             self.encL(10)
             self.encB(5)
-        return True
+        return True'''
 
 
 
