@@ -14,9 +14,7 @@ class GoPiggy(pigo.Pigo):
     # You may want to add a variable to store your default speed
     MIDPOINT = 82
     STOP_DIST = 20
-    RIGHT_SPEED = 180
-
-    #reduced left motor b/c too strong
+    RIGHT_SPEED = 200
     LEFT_SPEED = 200
     #For the recheck method
     fwd_count = 0
@@ -97,7 +95,7 @@ class GoPiggy(pigo.Pigo):
         while self.isClear():
             # let's go forward just a little
             self.recheck()
-            self.encF(18)
+            self.encF(26)
         # Turn head to center
         servo(self.MIDPOINT)
         time.sleep(.1)
