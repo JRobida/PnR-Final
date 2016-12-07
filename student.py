@@ -14,7 +14,7 @@ class GoPiggy(pigo.Pigo):
     # You may want to add a variable to store your default speed
     MIDPOINT = 82
     STOP_DIST = 20
-    RIGHT_SPEED = 200
+    RIGHT_SPEED = 195
     #reduced left motor b/c too strong
     LEFT_SPEED = 180
     #For the recheck method
@@ -61,33 +61,7 @@ class GoPiggy(pigo.Pigo):
         print("My power is at "+ str(volt()) + "volts")
 
 
-    #Needs improvement before put in problem was STOP_DIST
-    '''def clearToDance(self):
-        #need to at encR and encL and encd b
-        extraTurn = False
-        servo(self.MIDPOINT)
-        time.sleep(.1)
-        dist = us_dist(15)
-        print('Front distance:' + str(dist)
-        if dist < self.STOP_DIST:
-            self.encB(20)
-        servo(self.MIDPOINT - 60)
-        time.sleep(.1)
-        dist = us_dist(15)
-        print('Right distance:' + str(dist)
-        if dist < self.STOP_DIST:
-            self.encR(10)
-            self.encB(5)
-            extraTurn = True
-        servo(self.MIDPOINT + 60)
-        time.sleep(.1)
-        if extraTurn:
-            self.encL(10)
-        print('Left distance:' + str(us_dist(15)))
-        if dist < self.STOP_DIST:
-            self.encL(10)
-            self.encB(5)
-        return True'''
+
 
     ##my new turn method becasue encR and encL just dont cut it
     #takes x amount of degrees and turns accordingly
@@ -130,7 +104,7 @@ class GoPiggy(pigo.Pigo):
         if us_dist(15) < 3:
             self.encB(9)
 
-        # Left or Right previous version worked
+        '''# Left or Right previous version worked
         answer = self.choosePath()
         # If there is an object to the left go right
         # TODO: Replace '45'  with  a variable to make a better turn
@@ -139,13 +113,20 @@ class GoPiggy(pigo.Pigo):
             # Make more accurate, if there is an object right got left
             # TODO: Replace '45'  with  a variable to make a better turn
         elif answer == "right":
-            self.turnR(45)
+            self.turnR(45)'''
+        answer = self.kenny()
+        #a postive ruen is right
+        if answer > 0:
+            self.turnR(answer)
+        else:
+            #let'ds remove the negative with abs()
+            self.turnL(abs(answer))
 
         self.nav()
 
 
 
-    '''def kenny(self):
+    def kenny(self):
         # Activate our scanner!
         self.wideScan()
         # count will keep track of contigeous positive readings
@@ -203,7 +184,7 @@ class GoPiggy(pigo.Pigo):
             input("\nABOUT TO TURN RIGHT BY: " + str(bestoption) + " degrees")
         else:
             input("\nABOUT TO TURN LEFT BY: " + str(abs(bestoption)) + " degrees")
-        return bestoption'''
+        return bestoption
 
 
 
@@ -294,7 +275,33 @@ class GoPiggy(pigo.Pigo):
                     break
 
 
-
+                    # Needs improvement before put in problem was STOP_DIST
+    def clearToDance(self):
+        #need to at encR and encL and encd b
+        extraTurn = False
+        servo(self.MIDPOINT)
+        time.sleep(.1)
+        dist = us_dist(15)
+        print('Front distance:' + str(dist)
+        if dist < self.STOP_DIST:
+            self.encB(20)
+        servo(self.MIDPOINT - 60)
+        time.sleep(.1)
+        dist = us_dist(15)
+        print('Right distance:' + str(dist)
+        if dist < self.STOP_DIST:
+            self.encR(10)
+            self.encB(5)
+            extraTurn = True
+        servo(self.MIDPOINT + 60)
+        time.sleep(.1)
+        if extraTurn:
+            self.encL(10)
+        print('Left distance:' + str(us_dist(15)))
+        if dist < self.STOP_DIST:
+            self.encL(10)
+            self.encB(5)
+        return True
 
 
 
