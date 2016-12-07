@@ -14,9 +14,10 @@ class GoPiggy(pigo.Pigo):
     # You may want to add a variable to store your default speed
     MIDPOINT = 82
     STOP_DIST = 20
-    RIGHT_SPEED = 195
+    RIGHT_SPEED = 180
+
     #reduced left motor b/c too strong
-    LEFT_SPEED = 180
+    LEFT_SPEED = 200
     #For the recheck method
     fwd_count = 0
     #Adding a more accurate turn
@@ -113,11 +114,13 @@ class GoPiggy(pigo.Pigo):
             # Make more accurate, if there is an object right got left
             # TODO: Replace '45'  with  a variable to make a better turn
         elif answer == "right":
-            self.turnR(45)'''
+            self.turnR(45)
+            '''
         answer = self.kenny()
         #a postive ruen is right
         if answer > 0:
             self.turnR(answer)
+            #negative
         else:
             #let'ds remove the negative with abs()
             self.turnL(abs(answer))
