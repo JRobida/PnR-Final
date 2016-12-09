@@ -15,7 +15,7 @@ class GoPiggy(pigo.Pigo):
     MIDPOINT = 82
     STOP_DIST = 20
     # reducing right motor b/c right is too strong
-    RIGHT_SPEED = 196
+    RIGHT_SPEED = 189
     LEFT_SPEED = 200
     #For the recheck method
     fwd_count = 0
