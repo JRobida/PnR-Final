@@ -14,8 +14,8 @@ class GoPiggy(pigo.Pigo):
     # You may want to add a variable to store your default speed
     MIDPOINT = 82
     STOP_DIST = 20
-    RIGHT_SPEED = 200
-    #reducing left motor b/c left is too strong
+    # reducing right motor b/c right is too strong
+    RIGHT_SPEED = 196
     LEFT_SPEED = 200
     #For the recheck method
     fwd_count = 0
