@@ -226,6 +226,7 @@ class Pigo(object):
         print('All stop.')
         for x in range(3):
             stop()
+            time.sleep(0.05)
         servo(self.MIDPOINT)
         time.sleep(0.05)
         disable_servo()

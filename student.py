@@ -15,8 +15,8 @@ class GoPiggy(pigo.Pigo):
     MIDPOINT = 82
     STOP_DIST = 20
     # reducing right motor b/c right is too strong
-    RIGHT_SPEED = 189
-    LEFT_SPEED = 200
+    RIGHT_SPEED = 140
+    LEFT_SPEED = 130
     #For the recheck method
     fwd_count = 0
     #Adding a more accurate turn
@@ -96,7 +96,7 @@ class GoPiggy(pigo.Pigo):
         while self.isClear():
             # let's go forward just a little
             self.recheck()
-            self.encF(26)
+            self.encF(18)
         # Turn head to center
         servo(self.MIDPOINT)
         time.sleep(.1)
@@ -205,13 +205,14 @@ class GoPiggy(pigo.Pigo):
             elif answer == "right":
                 self.turnR(45)
     #New calibrate method to stop robot from drifting from the right
-
-
     def setSpeed(self, left, right):
+        #printing left speed at i.e 180
         print("Left speed: " + str(left))
+        #printing right speed at i.e 190
         print("Right speed: " + str(right))
         set_left_speed(int(left))
         set_right_speed(int(right))
+        #robot sleep
         time.sleep(.05)
 
 
