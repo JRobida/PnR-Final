@@ -22,8 +22,8 @@ class GoPiggy(pigo.Pigo):
     #Adding a more accurate turn
     turn_track = 0.0
     #uppercase will not change they are final
-    TIME_PER_DEGREE = 0.01278
-    TURN_MODIFIER = .5
+    TIME_PER_DEGREE = 0.007
+    TURN_MODIFIER = .8
 
     # CONSTRUCTOR
     def __init__(self):
