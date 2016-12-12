@@ -66,6 +66,7 @@ class GoPiggy(pigo.Pigo):
     ##my new turn method becasue encR and encL just dont cut it
     #takes x amount of degrees and turns accordingly
     def turnR(self, deg):
+        '''
         # adjust the tracker so we know how many degrees we turn
         self.turn_track += deg
         print("The exit is " + str(self.turn_track) + " degrees away.")
@@ -75,6 +76,8 @@ class GoPiggy(pigo.Pigo):
         right_rot()
         time.sleep(deg * self.TIME_PER_DEGREE)
         self.stop
+        '''
+        self.turnL((360-deg))
 
     def turnL(self, deg):
         #adjust the tracker so we know how many degrees we turn
