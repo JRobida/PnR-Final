@@ -93,38 +93,37 @@ class GoPiggy(pigo.Pigo):
         #### WRITE YOUR FINAL PROJECT HERE
         # TODO: If while loop fails, check for another path
         # TODO: Replace choosePath with  a method that's smarter
-        while self.isClear():
-            # let's go forward just a little
-            self.recheck()
-            self.encF(18)
-        # Turn head to center
-        servo(self.MIDPOINT)
-        time.sleep(.1)
-        # if there is an object that is less than 3 cm away back up and rescan
-        if us_dist(15) < 3:
-            self.encB(9)
+        while True:
+            while self.isClear():
+                # let's go forward just a little
+                self.recheck()
+                self.encF(18)
+            # Turn head to center
+            servo(self.MIDPOINT)
+            time.sleep(.1)
+            # if there is an object that is less than 3 cm away back up and rescan
+            if us_dist(15) < 3:
+                self.encB(9)
 
-        '''# Left or Right previous version worked
-        answer = self.choosePath()
-        # If there is an object to the left go right
-        # TODO: Replace '45'  with  a variable to make a better turn
-        if answer == "left":
-            self.turnL(45)
-            # Make more accurate, if there is an object right got left
+            '''# Left or Right previous version worked
+            answer = self.choosePath()
+            # If there is an object to the left go right
             # TODO: Replace '45'  with  a variable to make a better turn
-        elif answer == "right":
-            self.turnR(45)
-            '''
-        answer = self.kenny()
-        #a postive ruen is right
-        if answer > 0:
-            self.turnR(answer)
-            #negative
-        else:
-            #let'ds remove the negative with abs()
-            self.turnL(abs(answer))
+            if answer == "left":
+                self.turnL(45)
+                # Make more accurate, if there is an object right got left
+                # TODO: Replace '45'  with  a variable to make a better turn
+            elif answer == "right":
+                self.turnR(45)
+                '''
+            answer = self.kenny()
+            #a postive ruen is right
+            if answer > 0:
+                self.turnR(answer)
+            else:
+                #let'ds remove the negative with abs()
+                self.turnL(abs(answer))
 
-        self.nav()
 
 
 
