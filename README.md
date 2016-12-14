@@ -29,3 +29,5 @@ def kenny: this method was made by kenny and Mr. A, this method makes for a more
 
 def status: gives you the voltage of your robot.
 
+def backUp: will make sure the robot will not hit an object in front of it. It uses self.choosePath to help it determine
+if the robot has a clear path.
