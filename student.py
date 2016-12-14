@@ -16,7 +16,7 @@ class GoPiggy(pigo.Pigo):
     STOP_DIST = 30
     # reducing right motor b/c right is too strong
     RIGHT_SPEED = 140
-    LEFT_SPEED = 130
+    LEFT_SPEED = 125
     #For the recheck method
     fwd_count = 0
     #Adding a more accurate turn

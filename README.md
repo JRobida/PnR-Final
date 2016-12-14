@@ -15,8 +15,13 @@ video Mr. A put on youtube.
 def nav: this is your main method. Instead of driving and scanning, our robot inches forward then scans. With in the method
 there is a back up method. If the robot sees an object 15 centimeters away it will back up to give more room.
 
+With in the def nav is a commented out section. This is the orginal method we used. It would turn left or right by
+forty-five degrees.
+
 def recheck: is an method that rechecks the robots position. If the robot moves forward three times, it will stop and recheck
 to make sure it is on the best path possible.
 
+def kenny: this method was made by kenny and Mr. A, this method makes for a more accurate turn.
 
+def status: gives you the voltage of your robot.
 
