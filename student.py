@@ -13,7 +13,7 @@ class GoPiggy(pigo.Pigo):
     # CUSTOM INSTANCE VARIABLES GO HERE. You get the empty self.scan array from Pigo
     # You may want to add a variable to store your default speed
     MIDPOINT = 82
-    STOP_DIST = 20
+    STOP_DIST = 30
     # reducing right motor b/c right is too strong
     RIGHT_SPEED = 140
     LEFT_SPEED = 130
@@ -104,8 +104,8 @@ class GoPiggy(pigo.Pigo):
             # Turn head to center
             servo(self.MIDPOINT)
             time.sleep(.1)
-            # if there is an object that is less than 3 cm away back up and rescan
-            if us_dist(15) < 3:
+            # if there is an object that is less than 10 cm away back up and rescan
+            if us_dist(15) < 10:
                 self.encB(9)
 
             '''# Left or Right previous version worked
