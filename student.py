@@ -15,8 +15,8 @@ class GoPiggy(pigo.Pigo):
     MIDPOINT = 82
     STOP_DIST = 30
     # reducing right motor b/c right is too strong
-    RIGHT_SPEED = 135
-    LEFT_SPEED = 150
+    RIGHT_SPEED = 140
+    LEFT_SPEED = 125
     #For the recheck method
     fwd_count = 0
     #Adding a more accurate turn
@@ -101,12 +101,7 @@ class GoPiggy(pigo.Pigo):
                 # let's go forward just a little
                 self.recheck()
                 self.encF(18)
-            # Turn head to center
-            servo(self.MIDPOINT)
-            time.sleep(.1)
-            # if there is an object that is less than 10 cm away back up and rescan
-            if us_dist(15) < 10:
-                self.encB(9)
+            self.backUp()
 
             '''# Left or Right previous version worked
             answer = self.choosePath()
@@ -128,7 +123,9 @@ class GoPiggy(pigo.Pigo):
                 self.turnL(abs(answer))
 
 
-
+    def backUp(self):
+        if not self.isClear():
+            self.encB(10)
 
     def kenny(self):
         # Activate our scanner!

@@ -9,6 +9,10 @@ def handler: this method gives you options to drive forward, rotate, dance or ca
 def turnR: this method is a little weird. If you can remember, we had trouble turning right, it just go in circles. So we
 decided to turn the robot 360 - degrees. You by now have figured out how to turn right.
 
+def turnL: takes the degrees from the left side of the servo and finds the best path
+
+
+
 def dance: This is fun!. The robot is moves back and forth and the servo swings side to side. Remember to check out that
 video Mr. A put on youtube.
 
