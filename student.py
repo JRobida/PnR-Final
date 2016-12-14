@@ -124,7 +124,9 @@ class GoPiggy(pigo.Pigo):
 
 
     def backUp(self):
+        #if it is not clear
         if not self.isClear():
+            #back up 10
             self.encB(10)
 
     def kenny(self):
