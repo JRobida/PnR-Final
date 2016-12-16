@@ -14,8 +14,8 @@ class GoPiggy(pigo.Pigo):
     # You may want to add a variable to store your default speed
     MIDPOINT = 82
     STOP_DIST = 30
-    # reducing right motor b/c right is too strong
     RIGHT_SPEED = 140
+    #Left speed is reduce because left motor is too strong
     LEFT_SPEED = 125
     #For the recheck method
     fwd_count = 0
@@ -30,6 +30,7 @@ class GoPiggy(pigo.Pigo):
         print("Piggy has be instantiated!")
         # this method makes sure Piggy is looking forward
         #self.calibrate()
+        self.setSpeed(self.LEFT_SPEED, self.RIGHT_SPEED)
         # let's use an event-driven model, make a handler of sorts to listen for "events"
         while True:
             self.stop()
@@ -77,6 +78,7 @@ class GoPiggy(pigo.Pigo):
         time.sleep(deg * self.TIME_PER_DEGREE)
         self.stop
         '''
+        #To turn rright it will spin 360 - degrees
         self.turnL((360-deg))
 
     def turnL(self, deg):
@@ -248,12 +250,15 @@ class GoPiggy(pigo.Pigo):
                     print("Midpoint: " + str(self.MIDPOINT))
                     servo(self.MIDPOINT)
                     time.sleep(.01)
+                #Turns robot head lef tby one degree
                 elif response == "l":
                     self.MIDPOINT -= 1
                     print("Midpoint: " + str(self.MIDPOINT))
                     servo(self.MIDPOINT)
+                    #robot sleeps
                     time.sleep(.01)
                 else:
+                    #Printing the robots midpoint
                     print("Midpoint now saved to: " + str(self.MIDPOINT))
                     break
         response = input("Do you want to check if I'm driving straight? (y/n)")

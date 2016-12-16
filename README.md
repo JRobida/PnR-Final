@@ -11,7 +11,8 @@ decided to turn the robot 360 - degrees. You by now have figured out how to turn
 
 def turnL: takes the degrees from the left side of the servo and finds the best path
 
-TIME_PER_DEGREE: helps make the robot have an accurate turn.
+TIME_PER_DEGREE: helps make the robot have an accurate turn. Remember if you are having inaccurate turns try tinkering with
+time per degree or time modifier.
 
 def dance: This is fun!. The robot is moves back and forth and the servo swings side to side. Remember to check out that
 video Mr. A put on youtube.
@@ -34,4 +35,5 @@ if the robot has a clear path.
 
 def calibrate: this method helps calibrate the servo and speed. It sets the increasing or decreasing numbers for the speed
 and the servo
+
 
