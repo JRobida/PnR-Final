@@ -23,7 +23,7 @@ class GoPiggy(pigo.Pigo):
     turn_track = 0.0
     #uppercase will not change they are final
     TIME_PER_DEGREE = 0.01
-    TURN_MODIFIER = .8
+    TURN_MODIFIER = .7
 
     # CONSTRUCTOR
     def __init__(self):
